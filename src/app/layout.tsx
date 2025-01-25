@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 
+import { Roboto_Mono } from "next/font/google";
+
 import "~/styles/globals.css";
+
+const robotoMono = Roboto_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,7 +14,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={robotoMono.className}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }

@@ -5,6 +5,8 @@ export interface MeetupEvent {
   dateTime: string;
   description: string;
   status: string;
+  duration: number;
+  going: number;
   venue?: {
     name: string;
     address: string;
@@ -35,7 +37,7 @@ export interface GetMeetupEventResponse {
   };
 }
 
-const EVENT_QUERY = "id eventUrl title dateTime description status venue { name address }";
+const EVENT_QUERY = "id eventUrl title dateTime description status duration going venue { name address }";
 
 export async function getMeetupEvents(): Promise<GetMeetupEventsResponse> {
   const response = await fetch("https://api.meetup.com/gql", {
