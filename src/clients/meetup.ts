@@ -17,16 +17,8 @@ export interface GetMeetupEventsResponse {
   data: {
     groupByUrlname: {
       id: string;
-      upcomingEvents: {
-        edges: Array<{
-          node: MeetupEvent;
-        }>;
-      };
-      pastEvents: {
-        edges: Array<{
-          node: MeetupEvent;
-        }>;
-      };
+      upcomingEvents: { edges: Array<{ node: MeetupEvent }> };
+      pastEvents: { edges: Array<{ node: MeetupEvent }> };
     };
   };
 }

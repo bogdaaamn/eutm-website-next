@@ -1,17 +1,18 @@
 import { type ReactNode } from "react";
+
 import { DoubleArrowRightIcon } from "@radix-ui/react-icons";
 
 import { cn } from "~/utils/filters";
 
 function EventList({ children, className }: { children: ReactNode; className?: string }) {
-  return <ul className={cn("grid gap-2", className)}>{children}</ul>;
+  return <ul className={cn("grid", className)}>{children}</ul>;
 }
 
 function Card({ children, href, className }: { children: ReactNode; href: string; className?: string }) {
   return (
-    <li className="rounded-xl border hover:bg-gray-50 shadow-sm">
+    <li className="border border-t-0 first:border-t hover:bg-gray-50">
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <div className={cn("p-4", className)}>{children}</div>
+        <div className={cn("px-4 py-8", className)}>{children}</div>
       </a>
     </li>
   );
@@ -61,7 +62,7 @@ function IconRow({
 function Arrow({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center justify-center", className)}>
-      <DoubleArrowRightIcon className="w-4 h-4 flex-shrink-0 text-gray-200" />
+      <DoubleArrowRightIcon className="w-4 h-4 flex-shrink-0" />
     </div>
   );
 }

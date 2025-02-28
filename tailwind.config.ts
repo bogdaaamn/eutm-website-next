@@ -7,6 +7,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        "eu-blue": "var(--blue)",
       },
     },
   },
