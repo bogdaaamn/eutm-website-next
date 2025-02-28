@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Roboto_Mono } from "next/font/google";
+import GridAnimation from "~/components/grid-animation";
 
 import "~/styles/globals.css";
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl">{children}</div>
         </div>
+        <GridAnimation />
       </body>
     </html>
   );
