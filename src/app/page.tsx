@@ -1,4 +1,15 @@
-import { ArrowRightIcon, ClockIcon, SewingPinIcon, ArrowTopRightIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+
+import {
+  ArrowRightIcon,
+  ClockIcon,
+  SewingPinIcon,
+  ArrowTopRightIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+  TwitterLogoIcon,
+  InstagramLogoIcon,
+} from "@radix-ui/react-icons";
 
 import { EventList } from "~/components/event-list";
 import { Paragraph } from "~/components/typography";
@@ -6,11 +17,11 @@ import { ExternalLink } from "~/components/link";
 
 import LogoBw from "~/components/svg/logo-bw";
 import Logo from "~/components/svg/logo";
+import QrMeetup from "~/components/svg/qr-meetup";
 
 import { getMeetupEvents } from "~/clients/meetup";
 
 import { formatTime, mapDate, mapVenue } from "~/utils/filters";
-import QrMeetup from "~/components/svg/qr-meetup";
 
 export default async function Page() {
   const events = await getMeetupEvents();
@@ -132,7 +143,9 @@ export default async function Page() {
       <div className="pt-8 pb-24 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)] flex justify-between">
         <div className="relative flex justify-between w-full">
           <div className="flex-shrink-0">
-            <LogoBw className="w-40 invert" />
+            <Link href="/">
+              <LogoBw className="w-40 invert" />
+            </Link>
           </div>
           <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8">
             <div className="max-w-[200px]">
@@ -161,7 +174,21 @@ export default async function Page() {
             </div>
           </div>
           <div className="flex-shrink-0">
-            <p className="uppercase">Social media</p>
+            <p className="uppercase mb-2">Social media</p>
+            <div className="flex gap-4">
+              <ExternalLink href="https://github.com/EuTM">
+                <GitHubLogoIcon className="w-4 h-4" />
+              </ExternalLink>
+              <ExternalLink href="https://www.linkedin.com/company/105187082">
+                <LinkedInLogoIcon className="w-4 h-4" />
+              </ExternalLink>
+              <ExternalLink href="https://www.instagram.com/eutechmeetup">
+                <InstagramLogoIcon className="w-4 h-4" />
+              </ExternalLink>
+              <ExternalLink href="https://x.com/EuTechMeetup">
+                <TwitterLogoIcon className="w-4 h-4" />
+              </ExternalLink>
+            </div>
           </div>
         </div>
       </div>
