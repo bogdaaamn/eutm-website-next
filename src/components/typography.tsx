@@ -12,7 +12,7 @@ export function Paragraph({
   className?: string;
   as?: "p" | "h2" | "h3";
 }) {
-  const classNames = cn("mb-4 tracking-wide text-lg", robotoSlab.className, className);
+  const classNames = cn("mb-4 tracking-wide lg:text-lg", robotoSlab.className, className);
 
   if (as === "h2") {
     return <h2 className={classNames}>{children}</h2>;

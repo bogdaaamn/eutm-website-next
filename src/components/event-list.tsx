@@ -12,7 +12,7 @@ function Card({ children, href, className }: { children: ReactNode; href: string
   return (
     <li className="border border-t-0 first:border-t hover:bg-gray-50">
       <a href={href} target="_blank" rel="noopener noreferrer">
-        <div className={cn("px-4 py-8", className)}>{children}</div>
+        <div className={cn("px-4 py-6 lg:py-8", className)}>{children}</div>
       </a>
     </li>
   );

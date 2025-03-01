@@ -11,6 +11,7 @@ export default function GridAnimation() {
   const mousePos = useRef({ x: 0, y: 0 }); // Track current mouse position
   const animationFrameId = useRef<number | undefined>(undefined); // For cleaning up animation frame
   const timeRef = useRef<number>(0); // Track animation time for wave movement
+  const isMobileRef = useRef<boolean>(false); // Add new ref for tracking if we're on mobile
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -45,6 +46,14 @@ export default function GridAnimation() {
       },
     });
 
+    // Add function to check if device is mobile
+    const checkIfMobile = () => {
+      isMobileRef.current = window.innerWidth <= 1024;
+    };
+
+    // Initial check
+    checkIfMobile();
+
     const drawGrid = () => {
       const width = canvas.width;
       const height = canvas.height;
@@ -65,18 +74,22 @@ export default function GridAnimation() {
 
         // Draw each vertical line point by point
         for (let y = 0; y <= height; y += 2) {
-          // Calculate distance from current point to mouse
-          const dx = x - mousePos.current.x;
-          const dy = y - mousePos.current.y;
-
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          // Calculate wave offset based on distance from mouse
           let offset = 0;
-          if (distance < WAVE_SPREAD) {
-            const waveIntensity = 1 - distance / WAVE_SPREAD; // Fade out effect
-            offset =
-              WAVE_AMPLITUDE * Math.sin(distance * WAVE_FREQUENCY - timeRef.current * WAVE_SPEED) * waveIntensity;
+
+          if (isMobileRef.current) {
+            // On mobile, create continuous waves based on position and time
+            offset = WAVE_AMPLITUDE * Math.sin(y * 0.02 + x * 0.02 - timeRef.current * WAVE_SPEED);
+          } else {
+            // Original mouse-based waves for desktop
+            const dx = x - mousePos.current.x;
+            const dy = y - mousePos.current.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < WAVE_SPREAD) {
+              const waveIntensity = 1 - distance / WAVE_SPREAD;
+              offset =
+                WAVE_AMPLITUDE * Math.sin(distance * WAVE_FREQUENCY - timeRef.current * WAVE_SPEED) * waveIntensity;
+            }
           }
 
           // Draw smooth curves between points
@@ -120,18 +133,22 @@ export default function GridAnimation() {
         let lastOffset = 0;
 
         for (let x = 0; x <= width; x += 2) {
-          // Calculate the distance from the current point to the mouse
-          const dx = x - mousePos.current.x;
-          const dy = y - mousePos.current.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
           let offset = 0;
 
-          // If the distance from the current point to the mouse is less than the wave spread, calculate the wave offset
-          if (distance < WAVE_SPREAD) {
-            const waveIntensity = 1 - distance / WAVE_SPREAD;
-            offset =
-              WAVE_AMPLITUDE * Math.sin(distance * WAVE_FREQUENCY - timeRef.current * WAVE_SPEED) * waveIntensity;
+          if (isMobileRef.current) {
+            // On mobile, create continuous waves based on position and time
+            offset = WAVE_AMPLITUDE * Math.sin(x * 0.02 + y * 0.02 - timeRef.current * WAVE_SPEED);
+          } else {
+            // Original mouse-based waves for desktop
+            const dx = x - mousePos.current.x;
+            const dy = y - mousePos.current.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < WAVE_SPREAD) {
+              const waveIntensity = 1 - distance / WAVE_SPREAD;
+              offset =
+                WAVE_AMPLITUDE * Math.sin(distance * WAVE_FREQUENCY - timeRef.current * WAVE_SPEED) * waveIntensity;
+            }
           }
 
           // If the current point is the first point of the line, move to it
@@ -210,8 +227,8 @@ export default function GridAnimation() {
         clearTimeout(resizeTimeoutRef.current);
       }
 
-      // Debounce the resize event
       resizeTimeoutRef.current = setTimeout(() => {
+        checkIfMobile();
         setupCanvas();
       }, 100);
     };

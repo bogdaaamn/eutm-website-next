@@ -45,7 +45,7 @@ export default async function Page() {
         </Paragraph>
       </div>
 
-      <div className="py-36 bg-eu-blue text-background -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
+      <div className="py-24 lg:py-36 bg-eu-blue text-background -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
         <h3 className="uppercase text-center mb-8">Upcoming events</h3>
         <EventList>
           {upcomingEvents.map((event) => (
@@ -59,13 +59,13 @@ export default async function Page() {
                 <EventList.DateMonthRow>{mapDate(event.dateTime).month}</EventList.DateMonthRow>
               </EventList.DateBlock>
               <EventList.Content className="col-span-10">
-                <EventList.Details className="col-span-4">
+                <EventList.Details className="hidden lg:block lg:col-span-4">
                   <EventList.IconRow icon={ClockIcon}>
                     {formatTime(event.dateTime)} - {formatTime(event.endTime)}
                   </EventList.IconRow>
                   <EventList.IconRow icon={SewingPinIcon}>{mapVenue(event.venue)}</EventList.IconRow>
                 </EventList.Details>
-                <EventList.Details className="col-span-5">
+                <EventList.Details className="col-span-9 lg:col-span-5">
                   <EventList.Row className="font-bold">
                     <h4 className="truncate">{event.title}</h4>
                   </EventList.Row>
@@ -89,7 +89,7 @@ export default async function Page() {
       <div className="py-24">
         <Paragraph>
           We&apos;re committed to building a cool tech community in our area. We take pride in supporting local talent
-          and innovation. Our meetups are open to anyone with an interest in technology—whether you&apos;re a seasoned
+          and innovation. Our meetups are open to anyone with an interest in technology – whether you&apos;re a seasoned
           expert, an aspiring entrepreneur, or just curious about the latest trends. Join us at our next event and help
           us built the next tech community in Maastricht!
         </Paragraph>
@@ -108,13 +108,13 @@ export default async function Page() {
                 <EventList.DateMonthRow>{mapDate(event.dateTime).month}</EventList.DateMonthRow>
               </EventList.DateBlock>
               <EventList.Content className="col-span-10">
-                <EventList.Details className="col-span-4">
+                <EventList.Details className="col-span-4 hidden lg:block">
                   <EventList.IconRow icon={ClockIcon}>
                     {formatTime(event.dateTime)} - {formatTime(event.endTime)}
                   </EventList.IconRow>
                   <EventList.IconRow icon={SewingPinIcon}>{mapVenue(event.venue)}</EventList.IconRow>
                 </EventList.Details>
-                <EventList.Details className="col-span-5">
+                <EventList.Details className="col-span-9 lg:col-span-5">
                   <EventList.Row className="font-bold">
                     <h4 className="truncate">{event.title}</h4>
                   </EventList.Row>
@@ -141,14 +141,14 @@ export default async function Page() {
         </ExternalLink>
       </div>
       <div className="py-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)]">
-        <div className="grid grid-cols-3 w-full">
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-16">
+          <div className="order-last lg:order-first flex justify-center lg:justify-start">
             <Link href="/">
               <LogoBw className="w-40 invert" />
             </Link>
           </div>
-          <div className="flex gap-8">
-            <div className="max-w-[200px]">
+          <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
+            <div className="max-w-[200px] text-center lg:text-left">
               <p className="uppercase mb-2">Past events</p>
               <ul className="flex flex-col w-full text-sm">
                 {pastEvents.slice(0, 5).map((event) => (
@@ -160,7 +160,7 @@ export default async function Page() {
                 ))}
               </ul>
             </div>
-            <div className="max-w-[200px]">
+            <div className="max-w-[250px] lg:max-w-[200px] text-center lg:text-left">
               <p className="uppercase mb-2">Upcoming events</p>
               <ul className="flex flex-col w-full text-sm">
                 {upcomingEvents.slice(0, 5).map((event) => (
@@ -173,7 +173,7 @@ export default async function Page() {
               </ul>
             </div>
           </div>
-          <div className="justify-self-end">
+          <div className="lg:justify-self-end order-first lg:order-last flex flex-col items-center lg:items-start">
             <p className="uppercase mb-2">Social media</p>
             <div className="flex gap-4">
               <ExternalLink href="https://github.com/EuTM">
