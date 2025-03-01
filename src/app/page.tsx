@@ -77,6 +77,7 @@ export default async function Page() {
           ))}
         </EventList>
         <ExternalLink
+          aria-label="Send Patrick a message on Meetup"
           href="https://www.meetup.com/messages/?new_convo=true&member_id=210666746&name=Pat%20Scullion"
           className="flex items-center justify-center gap-1 mt-8"
         >
@@ -90,9 +91,9 @@ export default async function Page() {
         <Paragraph>
           We&apos;re committed to building a cool tech community in our area. We take pride in supporting local talent
           and innovation. Our meetups are open to anyone with an interest in technology – whether you&apos;re a seasoned
-          expert, an aspiring entrepreneur, or just curious about the latest trends. Join us at our next event and help
-          us built the next tech community in Maastricht!
+          expert, an aspiring entrepreneur, or just curious about the latest trends.
         </Paragraph>
+        <Paragraph>Join us at our next event and help us built the next tech community in Maastricht!</Paragraph>
       </div>
       <div className="py-24 bg-blue-300/15 -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
         <h3 className="uppercase text-center mb-8">Past events</h3>
@@ -126,6 +127,7 @@ export default async function Page() {
           ))}
         </EventList>
         <ExternalLink
+          aria-label="View all past events on Meetup"
           href="https://www.meetup.com/euregiotechmeetup/events/?type=past"
           className="flex items-center justify-center gap-1 mt-8"
         >
@@ -136,14 +138,14 @@ export default async function Page() {
         </ExternalLink>
       </div>
       <div className="py-24 flex items-center justify-center">
-        <ExternalLink href="https://www.meetup.com/EuregioTechMeetup">
+        <ExternalLink href="https://www.meetup.com/EuregioTechMeetup" aria-label="Join us on Meetup">
           <QrMeetup className="border" />
         </ExternalLink>
       </div>
       <div className="py-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)]">
         <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-16">
           <div className="order-last lg:order-first flex justify-center lg:justify-start">
-            <Link href="/">
+            <Link href="/" aria-label="Navigate to our home page">
               <LogoBw className="w-40 invert" />
             </Link>
           </div>
@@ -153,7 +155,11 @@ export default async function Page() {
               <ul className="flex flex-col w-full text-sm">
                 {pastEvents.slice(0, 5).map((event) => (
                   <li key={event.id} className="truncate">
-                    <ExternalLink href={event.eventUrl} className="truncate text-ellipsis w-full">
+                    <ExternalLink
+                      href={event.eventUrl}
+                      className="truncate text-ellipsis w-full"
+                      aria-label={`View ${event.title} on Meetup`}
+                    >
                       {event.title}
                     </ExternalLink>
                   </li>
@@ -165,7 +171,11 @@ export default async function Page() {
               <ul className="flex flex-col w-full text-sm">
                 {upcomingEvents.slice(0, 5).map((event) => (
                   <li key={event.id} className="truncate">
-                    <ExternalLink href={event.eventUrl} className="truncate text-ellipsis w-full">
+                    <ExternalLink
+                      href={event.eventUrl}
+                      className="truncate text-ellipsis w-full"
+                      aria-label={`View ${event.title} on Meetup`}
+                    >
                       {event.title}
                     </ExternalLink>
                   </li>
@@ -176,16 +186,16 @@ export default async function Page() {
           <div className="lg:justify-self-end order-first lg:order-last flex flex-col items-center lg:items-start">
             <p className="uppercase mb-2">Social media</p>
             <div className="flex gap-4">
-              <ExternalLink href="https://github.com/EuTM">
+              <ExternalLink href="https://github.com/EuTM" aria-label="View our GitHub">
                 <GitHubLogoIcon className="w-4 h-4" />
               </ExternalLink>
-              <ExternalLink href="https://www.linkedin.com/company/105187082">
+              <ExternalLink href="https://www.linkedin.com/company/105187082" aria-label="Follow us on LinkedIn">
                 <LinkedInLogoIcon className="w-4 h-4" />
               </ExternalLink>
-              <ExternalLink href="https://www.instagram.com/eutechmeetup">
+              <ExternalLink href="https://www.instagram.com/eutechmeetup" aria-label="Follow us on Instagram">
                 <InstagramLogoIcon className="w-4 h-4" />
               </ExternalLink>
-              <ExternalLink href="https://x.com/EuTechMeetup">
+              <ExternalLink href="https://x.com/EuTechMeetup" aria-label="Follow us on X">
                 <TwitterLogoIcon className="w-4 h-4" />
               </ExternalLink>
             </div>

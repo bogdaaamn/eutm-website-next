@@ -4,6 +4,8 @@ import { DoubleArrowRightIcon } from "@radix-ui/react-icons";
 
 import { cn } from "~/utils/filters";
 
+import { ExternalLink } from "./link";
+
 function EventList({ children, className }: { children: ReactNode; className?: string }) {
   return <ul className={cn("grid", className)}>{children}</ul>;
 }
@@ -11,9 +13,9 @@ function EventList({ children, className }: { children: ReactNode; className?: s
 function Card({ children, href, className }: { children: ReactNode; href: string; className?: string }) {
   return (
     <li className="border border-t-0 first:border-t hover:bg-gray-50">
-      <a href={href} target="_blank" rel="noopener noreferrer">
+      <ExternalLink href={href} aria-label="View event on Meetup">
         <div className={cn("px-4 py-6 lg:py-8", className)}>{children}</div>
-      </a>
+      </ExternalLink>
     </li>
   );
 }
