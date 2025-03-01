@@ -1,5 +1,7 @@
 import { Roboto_Mono } from "next/font/google";
 
+import { Analytics } from "@vercel/analytics/next";
+
 import GridAnimation from "~/components/grid-animation";
 
 import "~/styles/globals.css";
@@ -14,6 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <div className="mx-auto max-w-3xl">{children}</div>
         </div>
         <GridAnimation />
+        <Analytics />
       </body>
     </html>
   );
