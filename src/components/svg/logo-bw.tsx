@@ -1,6 +1,6 @@
 export default function LogoBw(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 30" {...props}>
       <defs>
         <style>
           {
