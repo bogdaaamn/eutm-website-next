@@ -140,14 +140,14 @@ export default async function Page() {
           <QrMeetup className="border" />
         </ExternalLink>
       </div>
-      <div className="pt-8 pb-24 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)] flex justify-between">
-        <div className="relative flex justify-between w-full">
-          <div className="flex-shrink-0">
+      <div className="py-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)]">
+        <div className="grid grid-cols-3 w-full">
+          <div>
             <Link href="/">
               <LogoBw className="w-40 invert" />
             </Link>
           </div>
-          <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8">
+          <div className="flex gap-8">
             <div className="max-w-[200px]">
               <p className="uppercase mb-2">Past events</p>
               <ul className="flex flex-col w-full text-sm">
@@ -173,7 +173,7 @@ export default async function Page() {
               </ul>
             </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="justify-self-end">
             <p className="uppercase mb-2">Social media</p>
             <div className="flex gap-4">
               <ExternalLink href="https://github.com/EuTM">
