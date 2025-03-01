@@ -22,6 +22,15 @@ import QrMeetup from "~/components/svg/qr-meetup";
 import { getMeetupEvents } from "~/clients/meetup";
 
 import { formatTime, mapDate, mapVenue } from "~/utils/filters";
+import { generateMetadata } from "~/utils/metadata";
+
+export const metadata = generateMetadata({
+  title: "EU Tech Meetup in Maastricht – Connect with Developers & Entrepreneurs",
+  description:
+    "Join the EU Tech Meetup in Maastricht, a thriving community for developers, entrepreneurs, and creatives. We host monthly events featuring talks on web development, AI, cybersecurity, and startups. Network, share knowledge, and grow your tech career in Maastricht!",
+  siteUrl: process.env.VERCEL_URL,
+  canonicalUrl: "https://www.eutm.eu",
+});
 
 export default async function Page() {
   const events = await getMeetupEvents();
@@ -46,7 +55,7 @@ export default async function Page() {
       </div>
 
       <div className="py-24 lg:py-36 bg-eu-blue text-background -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
-        <h3 className="uppercase text-center mb-8">Upcoming events</h3>
+        <h3 className="uppercase text-center mb-8">Upcoming tech events in Maastricht</h3>
         <EventList>
           {upcomingEvents.map((event) => (
             <EventList.Card
@@ -77,7 +86,7 @@ export default async function Page() {
           ))}
         </EventList>
         <ExternalLink
-          aria-label="Send Patrick a message on Meetup"
+          aria-label="Send Pat a message on Meetup"
           href="https://www.meetup.com/messages/?new_convo=true&member_id=210666746&name=Pat%20Scullion"
           className="flex items-center justify-center gap-1 mt-8"
         >
