@@ -2,6 +2,7 @@ import { ArrowRightIcon, ClockIcon, SewingPinIcon, ArrowTopRightIcon } from "@ra
 
 import { EventList } from "~/components/event-list";
 import { Paragraph } from "~/components/typography";
+import { ExternalLink } from "~/components/link";
 
 import LogoBw from "~/components/svg/logo-bw";
 import Logo from "~/components/svg/logo";
@@ -64,17 +65,15 @@ export default async function Page() {
             </EventList.Card>
           ))}
         </EventList>
-        <a
+        <ExternalLink
           href="https://www.meetup.com/messages/?new_convo=true&member_id=210666746&name=Pat%20Scullion"
-          target="_blank"
-          rel="noopener noreferrer"
           className="flex items-center justify-center gap-1 mt-8"
         >
           <Paragraph className="text-center text-base m-0">Want to be up next? Contact us</Paragraph>
           <span>
             <ArrowTopRightIcon className="w-4 h-4" />
           </span>
-        </a>
+        </ExternalLink>
       </div>
       <div className="py-24">
         <Paragraph>
@@ -115,34 +114,50 @@ export default async function Page() {
             </EventList.Card>
           ))}
         </EventList>
-        <a
+        <ExternalLink
           href="https://www.meetup.com/euregiotechmeetup/events/?type=past"
-          target="_blank"
-          rel="noopener noreferrer"
           className="flex items-center justify-center gap-1 mt-8"
         >
           <Paragraph className="text-center text-base m-0">View all past events</Paragraph>
           <span>
             <ArrowRightIcon className="w-4 h-4" />
           </span>
-        </a>
+        </ExternalLink>
       </div>
       <div className="py-24 flex items-center justify-center">
-        <a href="https://www.meetup.com/EuregioTechMeetup" target="_blank" rel="noopener noreferrer">
+        <ExternalLink href="https://www.meetup.com/EuregioTechMeetup">
           <QrMeetup className="border" />
-        </a>
+        </ExternalLink>
       </div>
-      <div className="pt-8 pb-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)] flex justify-between">
-        <div className="relative flex justify-between items-center w-full">
+      <div className="pt-8 pb-24 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)] flex justify-between">
+        <div className="relative flex justify-between w-full">
           <div className="flex-shrink-0">
             <LogoBw className="w-40 invert" />
           </div>
           <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-8">
-            <div>
-              <p className="uppercase">Past events</p>
+            <div className="max-w-[200px]">
+              <p className="uppercase mb-2">Past events</p>
+              <ul className="flex flex-col w-full text-sm">
+                {pastEvents.slice(0, 5).map((event) => (
+                  <li key={event.id} className="truncate">
+                    <ExternalLink href={event.eventUrl} className="truncate text-ellipsis w-full">
+                      {event.title}
+                    </ExternalLink>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div>
-              <p className="uppercase">Upcoming events</p>
+            <div className="max-w-[200px]">
+              <p className="uppercase mb-2">Upcoming events</p>
+              <ul className="flex flex-col w-full text-sm">
+                {upcomingEvents.slice(0, 5).map((event) => (
+                  <li key={event.id} className="truncate">
+                    <ExternalLink href={event.eventUrl} className="truncate text-ellipsis w-full">
+                      {event.title}
+                    </ExternalLink>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           <div className="flex-shrink-0">
