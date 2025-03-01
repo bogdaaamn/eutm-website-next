@@ -59,5 +59,10 @@ export function generateMetadata({
     alternates: {
       canonical: canonicalUrl,
     },
+    // TODO: Remove this once we setup domain
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
