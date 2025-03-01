@@ -8,10 +8,13 @@ import Logo from "~/components/svg/logo";
 
 import { getMeetupEvents } from "~/clients/meetup";
 
-import { filterLast15Events, mapDate, mapTime, mapVenue } from "~/utils/filters";
+import { formatTime, mapDate, mapVenue } from "~/utils/filters";
 
 export default async function Page() {
   const events = await getMeetupEvents();
+
+  const upcomingEvents = events.data.groupByUrlname.upcomingEvents.edges.map((edge) => edge.node);
+  const pastEvents = events.data.groupByUrlname.pastEvents.edges.map((edge) => edge.node);
 
   return (
     <main className="relative">
@@ -32,35 +35,33 @@ export default async function Page() {
       <div className="py-36 bg-eu-blue text-background -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
         <h3 className="uppercase text-center mb-8">Upcoming events</h3>
         <EventList>
-          {filterLast15Events(events.data.groupByUrlname.upcomingEvents.edges.map((edge) => edge.node))
-            .slice(0, 3)
-            .map((event) => (
-              <EventList.Card
-                key={event.id}
-                href={event.eventUrl}
-                className="grid grid-cols-12 gap-4 hover:text-foreground hover:border-foreground group"
-              >
-                <EventList.DateBlock className="col-span-2 group-hover:border-foreground">
-                  <EventList.DateDayRow>{mapDate(event.dateTime).day}</EventList.DateDayRow>
-                  <EventList.DateMonthRow>{mapDate(event.dateTime).month}</EventList.DateMonthRow>
-                </EventList.DateBlock>
-                <EventList.Content className="col-span-10">
-                  <EventList.Details className="col-span-4">
-                    <EventList.IconRow icon={ClockIcon}>
-                      {mapTime(event.dateTime).start} - {mapTime(event.dateTime).end}
-                    </EventList.IconRow>
-                    <EventList.IconRow icon={SewingPinIcon}>{mapVenue(event.venue)}</EventList.IconRow>
-                  </EventList.Details>
-                  <EventList.Details className="col-span-5">
-                    <EventList.Row className="font-bold">
-                      <h4 className="truncate">{event.title}</h4>
-                    </EventList.Row>
-                    <EventList.Row>{event.going} participants</EventList.Row>
-                  </EventList.Details>
-                  <EventList.Arrow className="col-span-1 group-hover:text-foreground" />
-                </EventList.Content>
-              </EventList.Card>
-            ))}
+          {upcomingEvents.map((event) => (
+            <EventList.Card
+              key={event.id}
+              href={event.eventUrl}
+              className="grid grid-cols-12 gap-4 hover:text-foreground hover:border-foreground group"
+            >
+              <EventList.DateBlock className="col-span-2 group-hover:border-foreground">
+                <EventList.DateDayRow>{mapDate(event.dateTime).day}</EventList.DateDayRow>
+                <EventList.DateMonthRow>{mapDate(event.dateTime).month}</EventList.DateMonthRow>
+              </EventList.DateBlock>
+              <EventList.Content className="col-span-10">
+                <EventList.Details className="col-span-4">
+                  <EventList.IconRow icon={ClockIcon}>
+                    {formatTime(event.dateTime)} - {formatTime(event.endTime)}
+                  </EventList.IconRow>
+                  <EventList.IconRow icon={SewingPinIcon}>{mapVenue(event.venue)}</EventList.IconRow>
+                </EventList.Details>
+                <EventList.Details className="col-span-5">
+                  <EventList.Row className="font-bold">
+                    <h4 className="truncate">{event.title}</h4>
+                  </EventList.Row>
+                  <EventList.Row>{event.going} participants</EventList.Row>
+                </EventList.Details>
+                <EventList.Arrow className="col-span-1 group-hover:text-foreground" />
+              </EventList.Content>
+            </EventList.Card>
+          ))}
         </EventList>
         <a
           href="https://www.meetup.com/messages/?new_convo=true&member_id=210666746&name=Pat%20Scullion"
@@ -85,7 +86,7 @@ export default async function Page() {
       <div className="py-24 bg-blue-300/15 -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
         <h3 className="uppercase text-center mb-8">Past events</h3>
         <EventList>
-          {filterLast15Events(events.data.groupByUrlname.pastEvents.edges.map((edge) => edge.node)).map((event) => (
+          {pastEvents.map((event) => (
             <EventList.Card
               key={event.id}
               href={event.eventUrl}
@@ -98,7 +99,7 @@ export default async function Page() {
               <EventList.Content className="col-span-10">
                 <EventList.Details className="col-span-4">
                   <EventList.IconRow icon={ClockIcon}>
-                    {mapTime(event.dateTime).start} - {mapTime(event.dateTime).end}
+                    {formatTime(event.dateTime)} - {formatTime(event.endTime)}
                   </EventList.IconRow>
                   <EventList.IconRow icon={SewingPinIcon}>{mapVenue(event.venue)}</EventList.IconRow>
                 </EventList.Details>

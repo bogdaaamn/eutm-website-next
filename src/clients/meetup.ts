@@ -3,9 +3,9 @@ export interface MeetupEvent {
   eventUrl: string;
   title: string;
   dateTime: string;
+  endTime: string;
   description: string;
   status: string;
-  duration: number;
   going: number;
   venue?: {
     name: string;
@@ -29,12 +29,12 @@ export interface GetMeetupEventResponse {
   };
 }
 
-const EVENT_QUERY = "id eventUrl title dateTime description status duration going venue { name address }";
+const EVENT_QUERY = "id eventUrl title dateTime endTime description status going venue { name address }";
 
 export async function getMeetupEvents(): Promise<GetMeetupEventsResponse> {
   const response = await fetch("https://api.meetup.com/gql", {
     headers: { "content-type": "application/json" },
-    body: `{ "query":"{ groupByUrlname(urlname: \\"EuregioTechMeetup\\") { id upcomingEvents(input: {first: 100}) { edges { node { ${EVENT_QUERY} } } } pastEvents(input: {first: 100}) { edges { node { ${EVENT_QUERY} } } } } }","variables":null }`,
+    body: `{ "query":"{ groupByUrlname(urlname: \\"EuregioTechMeetup\\") { id upcomingEvents(input: {first: 3}, sortOrder: ASC) { edges { node { ${EVENT_QUERY} } } } pastEvents(input: {first: 10}, sortOrder: DESC) { edges { node { ${EVENT_QUERY} } } } } }","variables":null }`,
     method: "POST",
   });
 

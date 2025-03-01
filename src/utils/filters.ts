@@ -8,28 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Sort events by date.
- *
- * @param events - The list of events to sort.
- *
- * @returns The sorted list of events.
- */
-export function sortEventsByDate(events: MeetupEvent[]): MeetupEvent[] {
-  return events.sort((a, b) => new Date(b.dateTime).getTime() - new Date(a.dateTime).getTime());
-}
-
-/**
- * Filter the last 15 events from the list of events.
- *
- * @param events - The list of events to filter.
- *
- * @returns The last 15 events from the list.
- */
-export function filterLast15Events(events: MeetupEvent[]): MeetupEvent[] {
-  return sortEventsByDate(events).slice(0, 15);
-}
-
-/**
  * Map the venue to a string.
  *
  * @param venue - The venue to map.
@@ -65,17 +43,13 @@ export function mapDate(date: MeetupEvent["dateTime"]): { day: string; month: st
 }
 
 /**
- * Map the time to an object containing the start and end time.
+ * Format the time to a string.
  *
- * @param time - The time to map.
+ * @param time - The time to format.
  *
- * @returns The mapped time to an object containing the start and end time.
+ * @returns The formatted time to nl-NL locale, HH:MM format.
  */
-export function mapTime(time: MeetupEvent["dateTime"]): { start: string; end: string } {
+export function formatTime(time: string): string {
   const dateObject = new Date(time);
-
-  return {
-    start: dateObject.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" }),
-    end: dateObject.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" }),
-  };
+  return dateObject.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" });
 }
