@@ -9,6 +9,7 @@ import Logo from "~/components/svg/logo";
 import { getMeetupEvents } from "~/clients/meetup";
 
 import { formatTime, mapDate, mapVenue } from "~/utils/filters";
+import QrMeetup from "~/components/svg/qr-meetup";
 
 export default async function Page() {
   const events = await getMeetupEvents();
@@ -115,7 +116,7 @@ export default async function Page() {
           ))}
         </EventList>
         <a
-          href="https://www.meetup.com/EuregioTechMeetup"
+          href="https://www.meetup.com/euregiotechmeetup/events/?type=past"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-1 mt-8"
@@ -124,6 +125,11 @@ export default async function Page() {
           <span>
             <ArrowRightIcon className="w-4 h-4" />
           </span>
+        </a>
+      </div>
+      <div className="py-24 flex items-center justify-center">
+        <a href="https://www.meetup.com/EuregioTechMeetup" target="_blank" rel="noopener noreferrer">
+          <QrMeetup className="border" />
         </a>
       </div>
       <div className="pt-8 pb-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)] flex justify-between">
