@@ -40,10 +40,12 @@ export default async function Page() {
   const pastEvents = events.data.groupByUrlname.pastEvents.edges.map((edge) => edge.node);
 
   return (
-    <main className="relative">
-      <div className="py-24">
+    <main className="relative" aria-label="EU Tech Meetup Maastricht main content">
+      <section className="py-24" aria-labelledby="hero-heading">
         <Logo />
-        <h1 className="sr-only">EU Tech Meetup Maastricht</h1>
+        <h1 id="hero-heading" className="sr-only">
+          EU Tech Meetup Maastricht
+        </h1>
         <Paragraph className="mt-8" as="h2">
           The EU Tech Meetup in Maastricht is a community where developers, entrepreneurs, and creatives come together
           to share knowledge, exchange ideas, and build meaningful connections. Every month, we host engaging talks and
@@ -53,7 +55,7 @@ export default async function Page() {
           Whether you&apos;re looking to showcase your work, find collaborators, or simply be inspired, our meetup
           provides the perfect space for both learning and networking.
         </Paragraph>
-        <div className="flex gap-4 mt-16 justify-center text-eu-blue">
+        <div className="flex gap-4 mt-16 justify-center text-eu-blue" aria-label="Social media links">
           <ExternalLink href="https://www.meetup.com/euregiotechmeetup" aria-label="Join us on Meetup">
             <MeetupLogoIcon className="w-10 h-10" />
           </ExternalLink>
@@ -70,10 +72,15 @@ export default async function Page() {
             <GitHubLogoIcon className="w-10 h-10" />
           </ExternalLink>
         </div>
-      </div>
+      </section>
 
-      <div className="py-24 lg:py-36 bg-eu-blue text-background -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
-        <h3 className="uppercase text-center mb-8">Upcoming tech events in Maastricht</h3>
+      <section
+        className="py-24 lg:py-36 bg-eu-blue text-background -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]"
+        aria-labelledby="upcoming-events-heading"
+      >
+        <h2 id="upcoming-events-heading" className="uppercase text-center mb-8">
+          Upcoming tech events in Maastricht
+        </h2>
         <EventList>
           {upcomingEvents.map((event) => (
             <EventList.Card
@@ -94,7 +101,7 @@ export default async function Page() {
                 </EventList.Details>
                 <EventList.Details className="col-span-10 lg:col-span-6">
                   <EventList.Row className="font-bold">
-                    <h4 className="truncate">{event.title}</h4>
+                    <h3 className="truncate">{event.title}</h3>
                   </EventList.Row>
                   <EventList.Row>{event.going} participants</EventList.Row>
                 </EventList.Details>
@@ -113,17 +120,27 @@ export default async function Page() {
             <ArrowTopRightIcon className="w-4 h-4" />
           </span>
         </ExternalLink>
-      </div>
-      <div className="py-24">
+      </section>
+
+      <section className="py-24" aria-labelledby="about-heading">
+        <h2 id="about-heading" className="sr-only">
+          About EU Tech Meetup
+        </h2>
         <Paragraph>
           We&apos;re committed to building a cool tech community in our area. We take pride in supporting local talent
           and innovation. Our meetups are open to anyone with an interest in technology – whether you&apos;re a seasoned
           expert, an aspiring entrepreneur, or just curious about the latest trends.
         </Paragraph>
         <Paragraph>Join us at our next event and help us built the next tech community in Maastricht!</Paragraph>
-      </div>
-      <div className="py-24 bg-blue-300/15 -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
-        <h3 className="uppercase text-center mb-8">Past events</h3>
+      </section>
+
+      <section
+        className="py-24 bg-blue-300/15 -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]"
+        aria-labelledby="past-events-heading"
+      >
+        <h2 id="past-events-heading" className="uppercase text-center mb-8">
+          Past events
+        </h2>
         <EventList>
           {pastEvents.map((event) => (
             <EventList.Card
@@ -144,7 +161,7 @@ export default async function Page() {
                 </EventList.Details>
                 <EventList.Details className="col-span-10 lg:col-span-6">
                   <EventList.Row className="font-bold">
-                    <h4 className="truncate">{event.title}</h4>
+                    <h3 className="truncate">{event.title}</h3>
                   </EventList.Row>
                   <EventList.Row>{event.going} participants</EventList.Row>
                 </EventList.Details>
@@ -163,16 +180,23 @@ export default async function Page() {
             <ArrowRightIcon className="w-4 h-4" />
           </span>
         </ExternalLink>
-      </div>
-      <div className="py-24 flex items-center justify-center">
-        <ExternalLink href="https://www.meetup.com/EuregioTechMeetup" aria-label="Join us on Meetup">
-          <QrMeetup className="border" />
+      </section>
+
+      <section className="py-24 flex items-center justify-center" aria-labelledby="qr-heading">
+        <h2 id="qr-heading" className="sr-only">
+          Scan QR code to join us on Meetup
+        </h2>
+        <ExternalLink href="https://www.meetup.com/EuregioTechMeetup" aria-label="Scan QR code to join us on Meetup">
+          <QrMeetup className="border" aria-hidden="true" />
         </ExternalLink>
-      </div>
-      <div className="py-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)]">
+      </section>
+
+      <footer className="py-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)]">
         <div className="grid grid-cols-1 lg:grid-cols-4 w-full gap-16">
-          <div className="text-center lg:text-left">
-            <p className="uppercase mb-4">Past events</p>
+          <div className="text-center lg:text-left" aria-labelledby="past-events-nav">
+            <h2 id="past-events-nav" className="uppercase mb-4">
+              Past events
+            </h2>
             <ul className="flex flex-col gap-2">
               {pastEvents.slice(0, 5).map((event) => (
                 <li key={event.id} className="truncate">
@@ -187,8 +211,11 @@ export default async function Page() {
               ))}
             </ul>
           </div>
-          <div className="text-center lg:text-left">
-            <p className="uppercase mb-4">Upcoming events</p>
+
+          <div className="text-center lg:text-left" aria-labelledby="upcoming-events-nav">
+            <h2 id="upcoming-events-nav" className="uppercase mb-4">
+              Upcoming events
+            </h2>
             <ul className="flex flex-col gap-2">
               {upcomingEvents.slice(0, 5).map((event) => (
                 <li key={event.id} className="truncate">
@@ -203,9 +230,10 @@ export default async function Page() {
               ))}
             </ul>
           </div>
+
           <div className="lg:col-span-2 lg:justify-self-end flex flex-col items-center lg:items-start">
-            <p className="uppercase mb-4">Social media</p>
-            <div className="flex gap-4">
+            <h2 className="uppercase mb-4">Social media</h2>
+            <div className="flex gap-4" aria-label="Social media links">
               <ExternalLink href="https://github.com/EuTM" aria-label="View our GitHub">
                 <GitHubLogoIcon className="w-4 h-4" />
               </ExternalLink>
@@ -219,12 +247,12 @@ export default async function Page() {
                 <TwitterLogoIcon className="w-4 h-4" />
               </ExternalLink>
             </div>
-            <Link href="/" aria-label="Navigate to our home page" className="mt-16 lg:mt-auto">
-              <LogoBw className="w-40 invert" />
+            <Link href="/" aria-label="EU Tech Meetup home page" className="mt-16 lg:mt-auto">
+              <LogoBw className="w-40 invert" aria-hidden="true" />
             </Link>
           </div>
         </div>
-      </div>
+      </footer>
     </main>
   );
 }
