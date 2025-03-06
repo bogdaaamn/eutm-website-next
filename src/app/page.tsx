@@ -63,25 +63,25 @@ export default async function Page() {
               href={event.eventUrl}
               className="grid grid-cols-12 gap-4 hover:text-foreground hover:border-foreground group"
             >
-              <EventList.DateBlock className="col-span-2 group-hover:border-foreground">
+              <EventList.DateBlock className="col-span-3 lg:col-span-2 group-hover:border-foreground">
                 <EventList.DateDayRow>{mapDate(event.dateTime).day}</EventList.DateDayRow>
                 <EventList.DateMonthRow>{mapDate(event.dateTime).month}</EventList.DateMonthRow>
               </EventList.DateBlock>
-              <EventList.Content className="col-span-10">
+              <EventList.Content className="col-span-9 lg:col-span-9">
                 <EventList.Details className="hidden lg:block lg:col-span-4">
                   <EventList.IconRow icon={ClockIcon}>
                     {formatTime(event.dateTime)} - {formatTime(event.endTime)}
                   </EventList.IconRow>
                   <EventList.IconRow icon={SewingPinIcon}>{mapVenue(event.venue)}</EventList.IconRow>
                 </EventList.Details>
-                <EventList.Details className="col-span-9 lg:col-span-5">
+                <EventList.Details className="col-span-10 lg:col-span-6">
                   <EventList.Row className="font-bold">
                     <h4 className="truncate">{event.title}</h4>
                   </EventList.Row>
                   <EventList.Row>{event.going} participants</EventList.Row>
                 </EventList.Details>
-                <EventList.Arrow className="col-span-1 group-hover:text-foreground" />
               </EventList.Content>
+              <EventList.Arrow className="hidden lg:flex lg:col-span-1 group-hover:text-foreground" />
             </EventList.Card>
           ))}
         </EventList>
@@ -113,25 +113,25 @@ export default async function Page() {
               href={event.eventUrl}
               className="grid grid-cols-12 gap-4 bg-background hover:bg-eu-blue hover:text-background hover:border-foreground"
             >
-              <EventList.DateBlock className="col-span-2">
+              <EventList.DateBlock className="col-span-3 lg:col-span-2">
                 <EventList.DateDayRow>{mapDate(event.dateTime).day}</EventList.DateDayRow>
                 <EventList.DateMonthRow>{mapDate(event.dateTime).month}</EventList.DateMonthRow>
               </EventList.DateBlock>
-              <EventList.Content className="col-span-10">
+              <EventList.Content className="col-span-9 lg:col-span-9">
                 <EventList.Details className="col-span-4 hidden lg:block">
                   <EventList.IconRow icon={ClockIcon}>
                     {formatTime(event.dateTime)} - {formatTime(event.endTime)}
                   </EventList.IconRow>
                   <EventList.IconRow icon={SewingPinIcon}>{mapVenue(event.venue)}</EventList.IconRow>
                 </EventList.Details>
-                <EventList.Details className="col-span-9 lg:col-span-5">
+                <EventList.Details className="col-span-10 lg:col-span-6">
                   <EventList.Row className="font-bold">
                     <h4 className="truncate">{event.title}</h4>
                   </EventList.Row>
                   <EventList.Row>{event.going} participants</EventList.Row>
                 </EventList.Details>
-                <EventList.Arrow className="col-span-1 text-gray-200" />
               </EventList.Content>
+              <EventList.Arrow className="hidden lg:flex lg:col-span-1 text-gray-200" />
             </EventList.Card>
           ))}
         </EventList>
@@ -152,48 +152,41 @@ export default async function Page() {
         </ExternalLink>
       </div>
       <div className="py-16 px-8 bg-eu-blue text-background -mx-[calc(50vw-50%)]">
-        <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-16">
-          <div className="order-last lg:order-first flex justify-center lg:justify-start">
-            <Link href="/" aria-label="Navigate to our home page">
-              <LogoBw className="w-40 invert" />
-            </Link>
+        <div className="grid grid-cols-1 lg:grid-cols-4 w-full gap-16">
+          <div className="text-center lg:text-left">
+            <p className="uppercase mb-4">Past events</p>
+            <ul className="flex flex-col gap-2">
+              {pastEvents.slice(0, 5).map((event) => (
+                <li key={event.id} className="truncate">
+                  <ExternalLink
+                    href={event.eventUrl}
+                    className="truncate text-ellipsis w-full"
+                    aria-label={`View ${event.title} on Meetup`}
+                  >
+                    {event.title}
+                  </ExternalLink>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start">
-            <div className="max-w-[200px] text-center lg:text-left">
-              <p className="uppercase mb-2">Past events</p>
-              <ul className="flex flex-col w-full text-sm">
-                {pastEvents.slice(0, 5).map((event) => (
-                  <li key={event.id} className="truncate">
-                    <ExternalLink
-                      href={event.eventUrl}
-                      className="truncate text-ellipsis w-full"
-                      aria-label={`View ${event.title} on Meetup`}
-                    >
-                      {event.title}
-                    </ExternalLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="max-w-[250px] lg:max-w-[200px] text-center lg:text-left">
-              <p className="uppercase mb-2">Upcoming events</p>
-              <ul className="flex flex-col w-full text-sm">
-                {upcomingEvents.slice(0, 5).map((event) => (
-                  <li key={event.id} className="truncate">
-                    <ExternalLink
-                      href={event.eventUrl}
-                      className="truncate text-ellipsis w-full"
-                      aria-label={`View ${event.title} on Meetup`}
-                    >
-                      {event.title}
-                    </ExternalLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="text-center lg:text-left">
+            <p className="uppercase mb-4">Upcoming events</p>
+            <ul className="flex flex-col gap-2">
+              {upcomingEvents.slice(0, 5).map((event) => (
+                <li key={event.id} className="truncate">
+                  <ExternalLink
+                    href={event.eventUrl}
+                    className="truncate text-ellipsis w-full"
+                    aria-label={`View ${event.title} on Meetup`}
+                  >
+                    {event.title}
+                  </ExternalLink>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="lg:justify-self-end order-first lg:order-last flex flex-col items-center lg:items-start">
-            <p className="uppercase mb-2">Social media</p>
+          <div className="lg:col-span-2 lg:justify-self-end flex flex-col items-center lg:items-start">
+            <p className="uppercase mb-4">Social media</p>
             <div className="flex gap-4">
               <ExternalLink href="https://github.com/EuTM" aria-label="View our GitHub">
                 <GitHubLogoIcon className="w-4 h-4" />
@@ -204,10 +197,13 @@ export default async function Page() {
               <ExternalLink href="https://www.instagram.com/eutechmeetup" aria-label="Follow us on Instagram">
                 <InstagramLogoIcon className="w-4 h-4" />
               </ExternalLink>
-              <ExternalLink href="https://x.com/EuTechMeetup" aria-label="Follow us on X">
+              <ExternalLink href="https://x.com/EuTechMeetup" aria-label="Follow us on Twitter">
                 <TwitterLogoIcon className="w-4 h-4" />
               </ExternalLink>
             </div>
+            <Link href="/" aria-label="Navigate to our home page" className="mt-16 lg:mt-auto">
+              <LogoBw className="w-40 invert" />
+            </Link>
           </div>
         </div>
       </div>
