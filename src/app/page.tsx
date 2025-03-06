@@ -23,6 +23,7 @@ import { getMeetupEvents } from "~/clients/meetup";
 
 import { formatTime, mapDate, mapVenue } from "~/utils/filters";
 import { generateMetadata } from "~/utils/metadata";
+import MeetupLogoIcon from "~/components/svg/meetup-logo";
 
 export const metadata = generateMetadata({
   title: "EU Tech Meetup in Maastricht – Connect with Developers & Entrepreneurs",
@@ -52,6 +53,23 @@ export default async function Page() {
           Whether you&apos;re looking to showcase your work, find collaborators, or simply be inspired, our meetup
           provides the perfect space for both learning and networking.
         </Paragraph>
+        <div className="flex gap-4 mt-16 justify-center text-eu-blue">
+          <ExternalLink href="https://www.meetup.com/euregiotechmeetup" aria-label="Join us on Meetup">
+            <MeetupLogoIcon className="w-10 h-10" />
+          </ExternalLink>
+          <ExternalLink href="https://www.linkedin.com/company/105187082" aria-label="Follow us on LinkedIn">
+            <LinkedInLogoIcon className="w-10 h-10" />
+          </ExternalLink>
+          <ExternalLink href="https://x.com/EuTechMeetup" aria-label="Follow us on Twitter">
+            <TwitterLogoIcon className="w-10 h-10" />
+          </ExternalLink>
+          <ExternalLink href="https://www.instagram.com/eutechmeetup" aria-label="Follow us on Instagram">
+            <InstagramLogoIcon className="w-10 h-10" />
+          </ExternalLink>
+          <ExternalLink href="https://github.com/EuTM" aria-label="View our GitHub">
+            <GitHubLogoIcon className="w-10 h-10" />
+          </ExternalLink>
+        </div>
       </div>
 
       <div className="py-24 lg:py-36 bg-eu-blue text-background -mx-[calc(50vw-50%)] px-[calc(50vw-50%)]">
