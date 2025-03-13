@@ -29,7 +29,7 @@ export const metadata = generateMetadata({
   title: "EU Tech Meetup in Maastricht – Connect with Developers & Entrepreneurs",
   description:
     "Join the EU Tech Meetup in Maastricht, a thriving community for developers, entrepreneurs, and creatives. We host monthly events featuring talks on web development, AI, cybersecurity, and startups. Network, share knowledge, and grow your tech career in Maastricht!",
-  siteUrl: process.env.VERCEL_URL,
+  siteUrl: process.env.VERCEL_PROJECT_PRODUCTION_URL,
   canonicalUrl: "https://www.eutm.eu/",
 });
 
