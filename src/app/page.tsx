@@ -30,7 +30,7 @@ export const metadata = generateMetadata({
   description:
     "Join the EU Tech Meetup in Maastricht, a thriving community for developers, entrepreneurs, and creatives. We host monthly events featuring talks on web development, AI, cybersecurity, and startups. Network, share knowledge, and grow your tech career in Maastricht!",
   siteUrl: process.env.VERCEL_URL,
-  canonicalUrl: "https://www.eutm.eu",
+  canonicalUrl: "https://www.eutm.eu/",
 });
 
 export default async function Page() {
