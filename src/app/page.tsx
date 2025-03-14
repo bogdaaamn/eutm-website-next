@@ -18,12 +18,14 @@ import { ExternalLink } from "~/components/link";
 import LogoBw from "~/components/svg/logo-bw";
 import Logo from "~/components/svg/logo";
 import QrMeetup from "~/components/svg/qr-meetup";
+import MeetupLogoIcon from "~/components/svg/meetup-logo";
 
 import { getMeetupEvents } from "~/clients/meetup";
 
 import { formatTime, mapDate, mapVenue } from "~/utils/filters";
 import { generateMetadata } from "~/utils/metadata";
-import MeetupLogoIcon from "~/components/svg/meetup-logo";
+
+export const revalidate = 86400; // Revalidate data every 24 hours
 
 export const metadata = generateMetadata({
   title: "EU Tech Meetup in Maastricht – Connect with Developers & Entrepreneurs",
