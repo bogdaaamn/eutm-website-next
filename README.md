@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EU Tech Meetup Website
 
-## Getting Started
+This is the official website for the EU Tech Meetup in Maastricht. We are a community where developers, entrepreneurs, and creatives come together to share knowledge, exchange ideas, and build meaningful connections.
 
-First, run the development server:
+We are committed to using, supporting, and contributing to open source software and other tech communities around us. Our meetup provides a platform for local talent and innovation while creating a third place for collaboration within the tech community.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project structure
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This Next.js project is organized as follows:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **`app/page.tsx`**: The homepage of the website that combines static content with dynamic data displaying upcoming and past events from the Meetup API. This is where users can find information about our community, upcoming talks, and past events.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **`app/api/revalidate/route.ts`**: A small API route that allows us to revalidate the cache on demand, ensuring that the latest event data is always available to visitors. Otherwise the cache revalidation is set for 24 hours. Read more about [Next.js' cache revalidation strategies](https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration).
 
-## Learn More
+- **`src/clients/`**: Contains our very small Meetup API client that we built to fetch event data directly from Meetup's platform.
 
-To learn more about Next.js, take a look at the following resources:
+- **`src/components/`**: A collection of reusable React components we've developed specifically for this website, including the event list, typography elements, and SVG icons.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Running locally
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You can run this project locally.
 
-## Deploy on Vercel
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the site
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Read more about [running and setting up Next.js locally](https://nextjs.org/docs/app/getting-started/installation). 
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Stack
+
+This project is built with the following technologies:
+
+- **[Next.js](https://nextjs.org/)**: React framework for server-rendered applications
+- **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework
+- **[GSAP](https://gsap.com/)**: Animation library (for the wrappy background)
+- **[Meetup API](https://www.meetup.com/api/)**: For fetching event data
+
+## Deployment
+
+This website is deployed on [Vercel](https://vercel.com/), the platform built by the creators of Next.js.
+
+## Contributing
+
+We welcome contributions from the community! If you're interested in helping improve our website, please feel free to submit a pull request or open an issue.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
