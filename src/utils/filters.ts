@@ -51,5 +51,5 @@ export function mapDate(date: MeetupEvent["dateTime"]): { day: string; month: st
  */
 export function formatTime(time: string): string {
   const dateObject = new Date(time);
-  return dateObject.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit" });
+  return dateObject.toLocaleTimeString("nl-NL", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Amsterdam" });
 }
